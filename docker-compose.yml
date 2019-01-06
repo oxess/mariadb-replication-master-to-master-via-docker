@@ -1,0 +1,23 @@
+version: '3'
+services:
+
+  db1:
+    image: mariadb
+    ports:
+      - 3307:3306
+    volumes:
+      - ./db1/data:/var/lib/mysql
+      - ./db1/conf:/etc/mysql/conf.d/
+    environment:
+      - MYSQL_ROOT_PASSWORD=$PASSWORD
+
+  db2:
+    image: mariadb
+    ports:
+      - 3307:3306
+    volumes:
+      - ./db2/data:/var/lib/mysql
+      - ./db2/conf:/etc/mysql/conf.d/
+    environment:
+      - MYSQL_ROOT_PASSWORD=$PASSWORD
+
