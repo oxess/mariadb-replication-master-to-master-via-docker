@@ -12,9 +12,16 @@ docker-compose exec db1 ./opt/scripts/setup.sh db1 db2 1234
 docker-compose exec db2 ./opt/scripts/setup.sh db2 db1 1234
 ```
 
-4. Go to mysql (_db1_): `docker-compose exec db1 mysql -u root -p1234`
+4. Run replication:
 
-5. Check correctness: 
+```bash
+docker-compose exec db1 mysql -u root -p1234 -e "start slave;"
+docker-compose exec db2 mysql -u root -p1234 -e "start slave;"
+```
+
+5. Go to mysql (_db1_): `docker-compose exec db1 mysql -u root -p1234`
+
+6. Check correctness: 
 
 - on db1
 
@@ -43,4 +50,4 @@ USE test;
 SHOW TABLES;
 ```
 
-6. It's all, enjoy!
+7. It's all, enjoy!
